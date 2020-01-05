@@ -9,8 +9,8 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use("/posts", dataRouter)
+app.use("/data", dataRouter)
 
 app.listen(port, () => {
-	console.log(`Blog express app listening on port ${port}`)
+	console.log(`AnalyzeVit app listening on port ${port}`)
 })
