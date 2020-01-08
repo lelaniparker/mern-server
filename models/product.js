@@ -21,3 +21,4 @@ const Product = new Schema({
             required: true
         }]
     }
+})
