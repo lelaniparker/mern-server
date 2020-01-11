@@ -31,6 +31,11 @@ mongoose.connect(
 	}
 )
 
+// Passport configuration (AFTER const app = express())
+require("./config/passport");
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/data", dataRouter)
 
 app.listen(port, () => {
