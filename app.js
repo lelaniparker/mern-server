@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors") // Enabling application middleware
 const bodyParser = require("body-parser")
 const dataRouter = require("./routes/data_routes") // Set up routing
+const postRouter = require("./routes/posts_routes")
 const mongoose = require("mongoose");
 
 const port = 3000 // Routing to listen on port 3000
@@ -32,6 +33,7 @@ mongoose.connect(
 )
 
 app.use("/data", dataRouter)
+app.use("/posts", postRouter)
 
 app.listen(port, () => {
 	console.log(`AnalyzeVit app listening on port ${port}`)
