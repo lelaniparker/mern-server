@@ -3,6 +3,7 @@ const cors = require("cors") // Enabling application middleware
 const bodyParser = require("body-parser")
 const dataRouter = require("./routes/data_routes") // Set up routing
 const mongoose = require("mongoose");
+//const session = require('express-session');
 const passport = require('passport');	// Set up authentication with Passport
 const passportLocalMongoose = require('passport-local-mongoose');
 const authRouter = require('./routes/auth_routes');

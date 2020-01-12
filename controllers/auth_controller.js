@@ -13,8 +13,8 @@ const register = function (req, res) {
             });
         } else {
             // Log in the newly registered user
-            passport.authentication('local')(req, res, function () {
-                console.log('authenticated', req.res.username);
+            passport.authenticate('local')(req, res, function () {
+                console.log('authenticated', req.user.username);
                 console.log('session object:', req.session);
                 console.log('req.user:', req.user);
                 res.status(200);
