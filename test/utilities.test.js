@@ -2,7 +2,7 @@ const expect = require("expect")
 const fs = require("fs")
 const utilities = require("../utils/utilities")
 // Use test data file
-const testDataFile = "../data/vitamin_data.test.json"
+const testDataFile = "../data/blog_posts.test.json"
 // When we write to the file, the path is relative to app.js
 const testDataFileForWrite = utilities.getDataFileRelativeToApp(testDataFile)
 
@@ -15,25 +15,25 @@ afterEach(() => {
 	tearDownData()
 })
 
-describe("getAllVitamins with one post", () => {
-	it("should get a vitamin if one exists", () => {
+describe("getAllPosts with one post", () => {
+	it("should get a post if one exists", () => {
 		// Pass an empty req object
-		expect(Object.keys(utilities.getAllVitamins({})).length).toBe(1)
+		expect(Object.keys(utilities.getAllPosts({})).length).toBe(1)
 	})
-	it("user of first vitamin should be tester", () => {
-		expect(utilities.getAllVitamins({})["1"].username).toBe("tester")
+	it("user of first post should be tester", () => {
+		expect(utilities.getAllPosts({})["1"].username).toBe("tester")
 	})
 })
 
-describe("getVitaminById", () => {
+describe("getPostById", () => {
 	// Define a req object with the expected structure to pass a parameter
 	const req = {
 		params: {
 			id: "1"
 		}
 	}
-	it("user of vitamin with id 1 should be tester", () => {
-		expect(utilities.getVitaminById(req).username).toBe("tester")
+	it("user of post with id 1 should be tester", () => {
+		expect(utilities.getPostById(req).username).toBe("tester")
 	})
 })
 
