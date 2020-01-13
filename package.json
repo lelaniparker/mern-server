@@ -1,7 +1,7 @@
 {
   "name": "mern-server",
   "version": "1.0.0",
-  "description": "I have created the following directories: - `routes`; - `controllers`; - `utils`; - `test`; and - `data`.     - Inside this folder, I've created a file called `vitamin_data.json` that contains one entry for manual testing.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha",

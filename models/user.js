@@ -10,6 +10,10 @@ const User = new Schema({
     email: {
         type: String,
         required: true
+    },
+    wishlist: {
+        type: Array,
+        required: false
     }
 })
 
