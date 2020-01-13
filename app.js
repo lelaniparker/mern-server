@@ -15,7 +15,11 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-const dbConn = "mongodb://localhost/analyzeVit"
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
+const dbConn = process.env.MONGODB_URL || "mongodb://localhost/analyzevit"
 // Set three properties to avoid deprecation warnings:
 // useNewUrlParser: true
 // useUnifiedTopology: true
