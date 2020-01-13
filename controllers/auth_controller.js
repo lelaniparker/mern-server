@@ -18,6 +18,14 @@ const register = function (req, res) {
     });
 };
 
+const logout = function (req, res) {
+    req.logout();
+    console.log("logged out user");
+    console.log("session object:", req.session);
+    console.log("req.user:", req.user);
+    res.sendStatus(200);
+}
+
 // helper functions
 const authenticate = passport.authenticate('local');
 
@@ -36,5 +44,5 @@ function loginUser(req, res) {
 module.exports = {
     register,
     login: loginUser,
-    //logout
+    logout
 };
