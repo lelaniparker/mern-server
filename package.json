@@ -36,5 +36,8 @@
   },
   "directories": {
     "test": "test"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
