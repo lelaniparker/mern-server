@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { getVitamins, getVitamin, addWishlistItem, getWishlistItems } = require("../controllers/data_controller")
+const { getVitamins, getVitamin, addWishlistItem, getProductsInWishlist } = require("../controllers/data_controller")
 
 // READ
 // GET on '/posts'
@@ -13,6 +13,6 @@ router.get("/", getVitamins)
 router.get("/:id", getVitamin)
 
 router.post("/wishlist/:userId", addWishlistItem)
-router.get("/wishlist/:userId", getWishlistItems)
+router.get("/wishlist/:userId", getProductsInWishlist)
 
 module.exports = router
