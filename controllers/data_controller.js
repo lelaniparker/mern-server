@@ -35,12 +35,20 @@ const addWishlistItem = function (req, res) {
     })
 };
 
-const getProductsInWishlist = function(req, res) {
-    //calls getWishlistItems => returns product
-}
+const getProductsInWishlist = function (req, res) {
+    //calls getWishlistItems
+    getWishlistItems(req).then((product) => {
+        res.status(200);
+        res.send(product)
+    }).catch((err) => {
+        res.status(500);
+        res.send(`Error occurred getting product from wishlist: ${err}`)
+    })
+};
 
 module.exports = {
     getVitamins,
     getVitamin,
-    addWishlistItem
+    addWishlistItem,
+    getProductsInWishlist
 }
