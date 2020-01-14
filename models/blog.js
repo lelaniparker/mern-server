@@ -24,6 +24,8 @@ const BlogPost = new Schema({
 		required: true
 	},
 	category: String
-})
+},
+	{collection: 'blogposts'}
+)
 
 module.exports = mongoose.model("BlogPost", BlogPost)

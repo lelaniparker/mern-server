@@ -1,20 +1,31 @@
-const { getAllPosts, getPostById } = require("../utils/utilities")
+const { getAllPosts, getPostById } = require("../utils/blog_utils")
 
 const getPosts = function(req, res) {
-	res.send(getAllPosts(req))
+	// execute the query from getAllPosts
+    getAllPosts(req).exec((err, posts) => {
+        console.log("products", posts)
+        if (err) {
+            res.status(500);
+            res.json({
+                error: err.message
+            });
+        }
+        res.send(posts);
+    });
 }
 
 const getPost = function(req, res) {
-	let post = getPostById(req)
-	if (post) res.send(post)
-	else {
-		res.status(404)
-		res.send(req.error)
-	}
+	// execute the query from getPostById
+	getPostById(req).exec((err, post) => {
+		if (err) {
+			res.status(404);
+			res.send("Post not found");
+		}
+		res.send(post);
+	});
 }
 
 module.exports = {
 	getPosts,
-	getPost,
-	getAllPosts
+	getPost
 }
