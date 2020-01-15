@@ -39,7 +39,7 @@ function loginUser(req, res) {
         res.status(200);
         res.json(req.user);
     });
-}
+};
 
 module.exports = {
     register,

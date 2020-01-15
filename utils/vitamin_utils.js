@@ -32,7 +32,6 @@ const getDataFileRelativeToApp = function (file) {
 
 // Add product to wishlist
 // returns a promise (because it is async)
-
 const updateUserWishlist = async function (req) {
 	const userId = req.params.userId;
 	let user = await User.findById(userId);

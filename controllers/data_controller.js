@@ -25,7 +25,17 @@ const getVitamin = function (req, res) {
     });
 };
 
+// Middleware to see if authenticated user is in session
+const userAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+};
+
 const addWishlistItem = function (req, res) {
+    // saves wishlist item 
     updateUserWishlist(req).then((user) => {
         res.status(200);
         res.send(user)
@@ -46,9 +56,12 @@ const getProductsInWishlist = function (req, res) {
     })
 };
 
+
+
 module.exports = {
     getVitamins,
     getVitamin,
     addWishlistItem,
-    getProductsInWishlist
+    getProductsInWishlist,
+    userAuthenticated
 }
