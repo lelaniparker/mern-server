@@ -51,6 +51,7 @@ app.use("/data", dataRouter)
 app.use("/auth", authRouter);
 app.use("/posts", postRouter)
 
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
 	console.log(`AnalyzeVit app listening on port ${port}`)
 })
