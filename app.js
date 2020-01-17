@@ -10,8 +10,6 @@ const passport = require('passport');	// Set up authentication with Passport/ ad
 const passportLocalMongoose = require('passport-local-mongoose');
 const authRouter = require('./routes/auth_routes');
 
-const port = 3000 // Routing to listen on port 3000
-
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
