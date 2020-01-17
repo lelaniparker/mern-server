@@ -18,8 +18,8 @@ if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
 
-//const dbConn = process.env.MONGODB_URL || "mongodb://localhost/analyzevit"
-const dbConn = "mongodb://localhost/analyzeVit"
+const dbConn = process.env.MONGODB_URL || "mongodb://localhost/analyzevit"
+// const dbConn = "mongodb://localhost/analyzeVit"
 // Set three properties to avoid deprecation warnings:
 // useNewUrlParser: true
 // useUnifiedTopology: true
