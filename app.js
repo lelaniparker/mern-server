@@ -11,8 +11,12 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const authRouter = require('./routes/auth_routes');
 
 const app = express()
-app.use(cors())
+app.use(cors({
+	origin: 'http://localhost:3000',
+	credentials: true
+}));
 app.use(bodyParser.json())
+app.options('*', cors())
 
 if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
@@ -49,7 +53,7 @@ app.use("/data", dataRouter)
 app.use("/auth", authRouter);
 app.use("/posts", postRouter)
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3009;
 app.listen(port, () => {
 	console.log(`AnalyzeVit app listening on port ${port}`)
 })
