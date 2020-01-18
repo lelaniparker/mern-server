@@ -3,11 +3,7 @@ const cors = require("cors") // Enabling application middleware
 const bodyParser = require("body-parser")
 const dataRouter = require("./routes/data_routes") // Set up routing
 const postRouter = require("./routes/posts_routes")
-<<<<<<< HEAD
-const dashboardRouter = require("./routes/dashboard_routes");
-=======
 const dashboardRouter = require("./routes/dashboard_routes")
->>>>>>> master
 const mongoose = require("mongoose");
 //const session = require('express-session');
 const passport = require('passport');	// Set up authentication with Passport/ add the username from req.user
@@ -56,11 +52,7 @@ app.use(passport.session());
 
 app.use("/data", dataRouter);
 app.use("/auth", authRouter);
-<<<<<<< HEAD
-app.use("/posts", postRouter);
-=======
 app.use("/posts", postRouter)
->>>>>>> master
 app.use("/dashboard", dashboardRouter)
 
 const port = process.env.PORT || 3009;

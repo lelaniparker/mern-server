@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-//const { getWishlistItems } = require("../utils/vitamin_utils")
-=======
 const { getUserById, updateUserDetails } = require("../utils/dashboard_utils")
->>>>>>> master
 
 // const getVitamins = function (req, res) {
 //     // execute the query from getAllPosts
@@ -29,20 +25,6 @@ const { getUserById, updateUserDetails } = require("../utils/dashboard_utils")
 //     });
 // };
 
-<<<<<<< HEAD
-// Middleware to see if authenticated user is in session
-// const userAuthenticated = function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//         next();
-//     } else {
-//         res.sendStatus(403);
-//     }
-// };
-
-// const addWishlistItem = function (req, res) {
-//     // saves wishlist item 
-//     updateUserWishlist(req).then((user) => {
-=======
 //Middleware to see if authenticated user is in session
 const userAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
@@ -52,7 +34,7 @@ const userAuthenticated = function (req, res, next) {
     }
 };
 
-const getUser = function(req, res) {
+const getUser = function (req, res) {
     let user = getUserById(req)
     if (user) res.send(user)
     else {
@@ -76,16 +58,11 @@ const updateUser = function (req, res) {
 // const updateUserEmail = function (req, res) {
 //     // updates users email 
 //     updateUserEmail(req).then((user) => {
->>>>>>> master
 //         res.status(200);
 //         res.send(user)
 //     }).catch((err) => {
 //         res.status(500);
-<<<<<<< HEAD
-//         res.send(`Error occurred adding product to wishlist: ${err}`)
-=======
 //         res.send(`Error occurred updating user's email: ${err}`)
->>>>>>> master
 //     })
 // };
 
@@ -102,19 +79,9 @@ const updateUser = function (req, res) {
 
 
 
-<<<<<<< HEAD
-//module.exports = {
-    // getVitamins,
-    // getVitamin,
-    // addWishlistItem,
-    // getProductsInWishlist,
-    //userAuthenticated
-//}
-=======
 module.exports = {
     updateUser,
     getUser,
     //updateUserEmail,
     userAuthenticated
 }
->>>>>>> master
