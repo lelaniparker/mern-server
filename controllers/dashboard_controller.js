@@ -51,7 +51,7 @@ const updateUser = function (req, res) {
         res.send(user)
     } else {
         res.status(500)
-        res.send(`Error occured: ${req.error}`)
+        res.send(`Error occurred: ${req.error}`)
     }
 };
 

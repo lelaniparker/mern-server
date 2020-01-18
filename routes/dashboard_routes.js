@@ -8,7 +8,7 @@ router.use(userAuthenticated)
 // READ 
 // GET on '/:userId'
 // Gets current user
-router.get("/:userId", getUser)
+router.get("/dashboard/:userId", getUser)
 // Dashboard
 // GET on user dashboard
 //router.get("/dashboard/:userId")

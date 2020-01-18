@@ -47,7 +47,7 @@ const getUserById = function (req) {
 const updateUserDetails = function (req) {
     try {
         const userId = req.params.userId;
-        let user = await User.findById(userId);
+        let user = User.findById(userId);
         if (!user[userId]) throw "User not found"
         user[userId].name = req.body.username
         user[userId].email = req.body.email
