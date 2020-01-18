@@ -3,7 +3,11 @@ const cors = require("cors") // Enabling application middleware
 const bodyParser = require("body-parser")
 const dataRouter = require("./routes/data_routes") // Set up routing
 const postRouter = require("./routes/posts_routes")
+<<<<<<< HEAD
 const dashboardRouter = require("./routes/dashboard_routes");
+=======
+const dashboardRouter = require("./routes/dashboard_routes")
+>>>>>>> master
 const mongoose = require("mongoose");
 //const session = require('express-session');
 const passport = require('passport');	// Set up authentication with Passport/ add the username from req.user
@@ -12,8 +16,12 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const authRouter = require('./routes/auth_routes');
 
 const app = express()
-app.use(cors())
+app.use(cors({
+	origin: 'http://localhost:3000',
+	credentials: true
+}));
 app.use(bodyParser.json())
+app.options('*', cors())
 
 if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
@@ -48,10 +56,14 @@ app.use(passport.session());
 
 app.use("/data", dataRouter);
 app.use("/auth", authRouter);
+<<<<<<< HEAD
 app.use("/posts", postRouter);
+=======
+app.use("/posts", postRouter)
+>>>>>>> master
 app.use("/dashboard", dashboardRouter)
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3009;
 app.listen(port, () => {
 	console.log(`AnalyzeVit app listening on port ${port}`)
 })
