@@ -1,11 +1,14 @@
 const express = require("express")
 const router = express.Router()
 const { getProductsInWishlist, userAuthenticated } = require("../controllers/data_controller")
-const { updateUser } = require("../controllers/dashboard_controller")
+const { getUser, updateUser } = require("../controllers/dashboard_controller")
 
 // User Authenticated
 router.use(userAuthenticated)
-
+// READ 
+// GET on '/:userId'
+// Gets current user
+router.get("/:userId", getUser)
 // Dashboard
 // GET on user dashboard
 //router.get("/dashboard/:userId")

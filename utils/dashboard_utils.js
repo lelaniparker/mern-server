@@ -31,13 +31,23 @@ const User = require("../models/user")
 //     return products;
 // }
 
+
+
+// Gets users details
+const getUserById = function (req) {
+    const userId = req.params.userId;
+    let user = User.findById(userId);
+    if (user) return user
+    else req.error = "User not found"
+}
+
+
 // Update User Details
 // returns a promise (because it is async)
 const updateUserDetails = function (req) {
     try {
         const userId = req.params.userId;
         let user = await User.findById(userId);
-        //let userId = req.params.userId
         if (!user[userId]) throw "User not found"
         user[userId].name = req.body.username
         user[userId].email = req.body.email
@@ -59,6 +69,7 @@ const updateUserDetails = function (req) {
 // }
 
 module.exports = {
+    getUserById,
     updateUserDetails,
     //updateUserEmail
     //getWishlistItems

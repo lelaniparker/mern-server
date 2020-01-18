@@ -1,4 +1,4 @@
-const { updateUserDetails } = require("../utils/dashboard_utils")
+const { getUserById, updateUserDetails } = require("../utils/dashboard_utils")
 
 // const getVitamins = function (req, res) {
 //     // execute the query from getAllPosts
@@ -33,6 +33,15 @@ const userAuthenticated = function (req, res, next) {
         res.sendStatus(403);
     }
 };
+
+const getUser = function(req, res) {
+    let user = getUserById(req)
+    if (user) res.send(user)
+    else {
+        res.status(404)
+        res.send(req.error)
+    }
+}
 
 const updateUser = function (req, res) {
     // updates users details
@@ -72,6 +81,7 @@ const updateUser = function (req, res) {
 
 module.exports = {
     updateUser,
+    getUser,
     //updateUserEmail,
     userAuthenticated
 }
