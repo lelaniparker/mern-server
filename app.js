@@ -12,7 +12,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const authRouter = require('./routes/auth_routes');
 
 const app = express()
-const whitelist = ['http://analyzevit.netlify.com', 'http://localhost.com:3000']
+const whitelist = ['https://analyzevit.netlify.com/', 'http://localhost.com:3000']
 app.use(cors({
 	origin: function(origin, callback) {
 		if (whitelist.indexOf(origin) !== -1) {
