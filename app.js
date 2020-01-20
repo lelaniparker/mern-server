@@ -5,7 +5,8 @@ const dataRouter = require("./routes/data_routes") // Set up routing
 const postRouter = require("./routes/posts_routes")
 const userRouter = require("./routes/dashboard_routes")
 const mongoose = require("mongoose");
-//const session = require('express-session');
+const session = require('express-session');
+const MongoStore = require("connect-mongo")(session)
 const passport = require('passport');	// Set up authentication with Passport/ add the username from req.user
 
 const passportLocalMongoose = require('passport-local-mongoose');
@@ -23,7 +24,7 @@ const corsOptions = {
 	}
 }
 app.use(cors({
-	origin: function(origin, callback) {
+	origin: function (origin, callback) {
 		callback(null, true)
 	},
 	credentials: true
@@ -60,7 +61,18 @@ mongoose.connect(
 // Define express session object here
 // require express-session and MongoStore
 // use session object (with secret, etc.)
-
+app.use(session({
+	// resave and saveUninitialized set to false for deprecation warnings
+	secret: "Express is awesome",
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		maxAge: 1800000
+	},
+	store: new MongoStore({
+		mongooseConnection: mongoose.connection
+	})
+}));
 // Passport configuration (AFTER const app = express())
 require("./config/passport");
 app.use(passport.initialize());
