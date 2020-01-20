@@ -12,6 +12,9 @@ const passport = require('passport');	// Set up authentication with Passport/ ad
 const passportLocalMongoose = require('passport-local-mongoose');
 const authRouter = require('./routes/auth_routes');
 
+// load the config to connect to the database
+const { mongooseConnect } = require('./config/mongoose_connection')
+
 const app = express()
 const whitelist = ['https://analyzevit.netlify.com/', 'http://localhost:3000/']
 const corsOptions = {
@@ -23,6 +26,8 @@ const corsOptions = {
 		}
 	}
 }
+
+// currently cors is letting through all api calls, in the future we will restrict to only our front end
 app.use(cors({
 	origin: function (origin, callback) {
 		callback(null, true)
@@ -32,34 +37,13 @@ app.use(cors({
 app.use(bodyParser.json())
 app.options('*', cors())
 
+// Loads .env config file  (environment variables) if not in production
 if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
 
-// Deployed Database
-const dbConn = process.env.MONGODB_URL || "mongodb://localhost/analyzevit"
-// Local Database:
-// const dbConn = "mongodb://localhost/analyzeVit"
-
-// Set three properties to avoid deprecation warnings:
-// useNewUrlParser: true
-// useUnifiedTopology: true
-// useFileAndModify: false
-mongoose.connect(
-	dbConn,
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-		useFindAndModify: false
-	},
-	err => {
-		if (err) {
-			console.log("Error connecting to database", err)
-		} else {
-			console.log("Connected to database!")
-		}
-	}
-)
+// connect to the database, depending on what environment the server is in
+mongooseConnect(process.env.NODE_ENV);
 
 // Define express session object here
 // require express-session and MongoStore
@@ -90,3 +74,8 @@ const port = process.env.PORT || 3009;
 app.listen(port, () => {
 	console.log(`AnalyzeVit app listening on port ${port}`)
 })
+
+// export app, used in tests
+module.exports = {
+	app
+}
