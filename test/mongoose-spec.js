@@ -11,18 +11,18 @@ const { mongoose } = require('../config/mongoose_connection')
 
 const { expect } = chai
 
-describe('Mongoose connection Tests', function() {
-	describe('test vs development database connection', function() {
-		it('checks mongoose has connected to the test database not development', function(done) {
+describe('Mongoose connection Tests',() => {
+	describe('test vs development database connection', () => {
+		it('checks mongoose has connected to the test database not development', (done) => {
 			chai.request(app)
-			expect(mongoose.connection.name === 'archivse-test')
+			expect(mongoose.connection.name === 'analyzevit')
 			done()
 		})
 
-		it('should connect to development database when NODE_ENV is "!== test"', function(done) {
+		it('should connect to development database when NODE_ENV is "!== test"', (done) => {
 			NODE_ENV = 'development'
 			chai.request(app)
-			expect(mongoose.connection.name === 'archivise')
+			expect(mongoose.connection.name === 'analyzevit')
 			done()
 			NODE_ENV = 'test'
 		})

@@ -74,3 +74,8 @@ const port = process.env.PORT || 3009;
 app.listen(port, () => {
 	console.log(`AnalyzeVit app listening on port ${port}`)
 })
+
+// export app, used in tests
+module.exports = {
+	app
+}
