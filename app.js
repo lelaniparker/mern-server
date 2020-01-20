@@ -36,8 +36,11 @@ if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
 
+// Deployed Database
 const dbConn = process.env.MONGODB_URL || "mongodb://localhost/analyzevit"
+// Local Database:
 // const dbConn = "mongodb://localhost/analyzeVit"
+
 // Set three properties to avoid deprecation warnings:
 // useNewUrlParser: true
 // useUnifiedTopology: true
