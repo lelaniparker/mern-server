@@ -14,3 +14,6 @@
 - post `auth/register` register
 - post `auth/login` login
 - get `auth/logout` logout
+
+- get `/:userId` getUser
+- post `/:userId` updateUser
