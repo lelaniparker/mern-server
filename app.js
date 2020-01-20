@@ -3,7 +3,7 @@ const cors = require("cors") // Enabling application middleware
 const bodyParser = require("body-parser")
 const dataRouter = require("./routes/data_routes") // Set up routing
 const postRouter = require("./routes/posts_routes")
-const displayUser = require("./routes/dashboard_routes")
+const userRouter = require("./routes/dashboard_routes")
 const mongoose = require("mongoose");
 //const session = require('express-session');
 const passport = require('passport');	// Set up authentication with Passport/ add the username from req.user
@@ -14,7 +14,7 @@ const authRouter = require('./routes/auth_routes');
 const app = express()
 const whitelist = ['https://analyzevit.netlify.com/', 'http://localhost.com:3000']
 app.use(cors({
-	origin: function(origin, callback) {
+	origin: function (origin, callback) {
 		if (whitelist.indexOf(origin) !== -1) {
 			callback(null, true)
 		} else {
@@ -52,6 +52,10 @@ mongoose.connect(
 	}
 )
 
+// Define express session object here
+// require express-session and MongoStore
+// use session object (with secret, etc.)
+
 // Passport configuration (AFTER const app = express())
 require("./config/passport");
 app.use(passport.initialize());
@@ -59,8 +63,8 @@ app.use(passport.session());
 
 app.use("/data", dataRouter)
 app.use("/auth", authRouter);
-app.use("/posts", postRouter)
-app.use("/dashboard", displayUser)
+app.use("/posts", postRouter);
+app.use("/dashboard", userRouter);
 
 const port = process.env.PORT || 3009;
 app.listen(port, () => {
