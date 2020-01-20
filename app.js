@@ -6,6 +6,8 @@ const postRouter = require("./routes/posts_routes")
 const userRouter = require("./routes/dashboard_routes")
 const mongoose = require("mongoose");
 //const session = require('express-session');
+const session = require('express-session');
+const MongoStore = require("connect-mongo")(session);
 const passport = require('passport');	// Set up authentication with Passport/ add the username from req.user
 
 const passportLocalMongoose = require('passport-local-mongoose');
