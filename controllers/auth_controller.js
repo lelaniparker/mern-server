@@ -50,8 +50,20 @@ const logout = function (req, res) {
 // helper functions
 const authenticate = passport.authenticate('local');
 
+// function checks has a valid session id
+const activeUserSession = (req,res) => {
+    if(req.sessionID && req.user) {
+        res.status(200);
+        res.send(req.sessionID)
+    }
+    else {
+        res.sendStatus(403);
+    }
+}
+
 module.exports = {
     register,
     login: loginUser,
-    logout
+    logout,
+    activeUserSession
 };
