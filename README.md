@@ -15,5 +15,5 @@
 - post `auth/login` login
 - get `auth/logout` logout
 
-- get `/:userId` getUser
-- post `/:userId` updateUser
+- get `user/:userId` getUser
+- post `user/:userId` updateUser

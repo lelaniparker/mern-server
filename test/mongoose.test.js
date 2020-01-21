@@ -15,7 +15,7 @@ describe('Mongoose connection Tests',() => {
 	describe('test vs development database connection', () => {
 		it('checks mongoose has connected to the test database not development', (done) => {
 			chai.request(app)
-			expect(mongoose.connection.name === 'analyzevit')
+			expect(mongoose.connection.name === 'analyzevit_test')
 			done()
 		})
 
@@ -23,8 +23,8 @@ describe('Mongoose connection Tests',() => {
 			NODE_ENV = 'development'
 			chai.request(app)
 			expect(mongoose.connection.name === 'analyzevit')
-			done()
 			NODE_ENV = 'test'
+			done()
 		})
 	})
 })
