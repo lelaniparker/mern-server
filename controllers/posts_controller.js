@@ -10,7 +10,7 @@ const getPosts = function(req, res) {
                 error: err.message
             });
         }
-        res.send(posts);
+        res.json(posts);
     });
 }
 
@@ -21,7 +21,7 @@ const getPost = function(req, res) {
 			res.status(404);
 			res.send("Post not found");
 		}
-		res.send(post);
+		res.json(post);
 	});
 }
 

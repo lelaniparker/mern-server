@@ -16,4 +16,4 @@
 - get `auth/logout` logout
 
 - get `user/:userId` getUser
-- post `user/:userId` updateUser
+- put `user/:userId` updateUser

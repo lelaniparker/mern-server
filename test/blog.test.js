@@ -51,8 +51,8 @@ describe('Blog Tests', () => {
                     res.body.should.be.a('array');
                     res.body.length.should.be.eql(1);
                     res.body[0].title.should.be.eql("Test Title");
-                done();
-                });
+            });
+        done();
         });
     });
 
@@ -69,7 +69,7 @@ describe('Blog Tests', () => {
             });
             newPost.save((err, blogPost) => {
                 chai.request(app)
-                    .get('/posts/' + blogPost.id)
+                    .get('/posts' + blogPost.id)
                     .send(blogPost)
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -80,11 +80,9 @@ describe('Blog Tests', () => {
                         res.body.should.have.property('category');
                         res.body.should.have.property('_id').eql(blogPost.id);
                         res.body.username.should.be.eql("Buffy Summers");
-                done();
                 });
-
             });
-
+            done();
         })
     })
 })
