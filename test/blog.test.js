@@ -12,14 +12,16 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-before(async (done) => {
-	await mongoose.connection
-		.dropCollection('Blog')
-		.catch(err => console.log(err))
-		.then(done())
-})
-
 describe('Blog Tests', () => {
+
+    before(async (done) => {
+        await mongoose.connection
+            .dropCollection('Blog')
+            .catch(err => console.log(err))
+            .then(done())
+    })
+
+
     // GET route
     describe('/GET blog', () => {
         it('it should GET all the blogposts', (done) => {
@@ -34,16 +36,19 @@ describe('Blog Tests', () => {
         });
     });
 
+    
+
     describe('/GET/post/:id ', () => {
         it('it should GET a post by the given id', (done) => {
-            let post = {
+            const post = {
                 title: "Blog Title",
                 username: "Test Smith",
                 content: "This is the content" };
 
-            post.save((err, post) => {
+            blogModel.create((err, post) => {
+                const dbPost = blogModel.find()
                 chai.request(app)
-                .get('/post/' + post.id)
+                .get('/post/' + post._id)
                 .send(post)
                 .end((err, res) => {
                     res.should.have.status(200);
