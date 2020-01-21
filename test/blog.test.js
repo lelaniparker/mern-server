@@ -2,10 +2,10 @@
 process.env.NODE_ENV = 'test';
 
 const { mongoose } = require('../config/mongoose_connection')
-const blogModel = require('../models/blog')
 const { app } = require('../app')
+const blogModel = require('../models/blog')
 
-//Require the dev-dependencies
+//Require the dependencies
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const should = chai.should();
@@ -14,53 +14,42 @@ chai.use(chaiHttp);
 
 describe('Blog Tests', () => {
 
-    before(async (done) => {
-        await mongoose.connection
-            .dropCollection('Blog')
-            .catch(err => console.log(err))
-            .then(done())
+    // setup test blog post
+    const testBlogPost = new blogModel({
+            title: "Test Title",
+            create_date: "01/01/2020",
+            modified_date: "02/01/2020",
+            username: "Test User",
+            content: "Test content here",
+            category: "Test Category"
+    })
+
+    // before the tests run, add the blog post to the test database
+    before((done) => {
+        blogModel.create(testBlogPost);
+        done();
+    })
+
+    // dropping the Blog collection in the test database for a fresh test environment after it has run the tests
+    after( (done) => {
+        mongoose.connection
+        blogModel.deleteMany({}, function(err) {
+        });
+            done();
     })
 
 
     // GET route
     describe('/GET blog', () => {
-        it('it should GET all the blogposts', (done) => {
+        it('should GET all the blogposts', (done) => {
             chai.request(app)
                 .get('/posts')
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
-                    res.body.length.should.be.eql(0);
+                    res.body.length.should.be.eql(1);
                 done();
                 });
-        });
-    });
-
-    
-
-    describe('/GET/post/:id ', () => {
-        it('it should GET a post by the given id', (done) => {
-            const post = {
-                title: "Blog Title",
-                username: "Test Smith",
-                content: "This is the content" };
-
-            blogModel.create((err, post) => {
-                const dbPost = blogModel.find()
-                chai.request(app)
-                .get('/post/' + post._id)
-                .send(post)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('title');
-                    res.body.should.have.property('username');
-                    res.body.should.have.property('content');
-                    res.body.should.have.property('_id').eql(post.id);
-                done();
-                });
-            });
-
         });
     });
 });

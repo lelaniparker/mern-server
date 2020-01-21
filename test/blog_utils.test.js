@@ -1,27 +1,46 @@
-// set the environment to test mode
+// // set the environment to test mode
 // process.env.NODE_ENV = 'test';
 
-// const mongoose = require("mongoose");
+// const { mongoose } = require("../config/mongoose_connection");
 // const chai = require('chai');
 // const chaiHttp = require('chai-http');
-// const utils = require("../utils/blog_utils")
+// const should = chai.should();
+// const blogModel = require("../models/blog")
+// const { getAllPosts } = require("../utils/blog_utils")
 
-// const expect = require("expect")
-// const fs = require("fs")
-// const utilities = require("../utils/blog_utils.js")
-// // Use test data file
-// const testDataFile = "./blog_posts.test.json"
-// // When we write to the file, the path is relative to app.js
-// const testDataFileForWrite = utilities.getDataFileRelativeToApp(testDataFile)
+// chai.use(chaiHttp);
 
-// beforeEach(() => {
-// 	// Set and load data from test data file
-// 	setupData()
+//         const testBlogPost = new blogModel({
+//             title: "Test Title",
+//             create_date: "01/01/2020",
+//             modified_date: "02/01/2020",
+//             username: "Test User",
+//             content: "Test content here",
+//             category: "Test Category"
+//         })
+
+// describe('Blog Utils Tests', () => {
+//     // before((done) => {
+//     //     blogModel.create(testBlogPost)
+//     //     done();
+//     // })
+
+//     after((done) => {
+//         mongoose.connection
+//             .dropCollection('Blog')
+//             .catch(err => console.log(err))
+//             .then(done())
+//     })
+
+//     describe('getAllPosts with one post', () => {
+//         it('should get one post', (done) => {
+//           const allPosts = getAllPosts(testBlogPost);
+//           console.log(allPosts)
+//           allPosts.products.length.should.be.eql(1);
+//         })
+//     })
 // })
-// afterEach(() => {
-// 	// Empty test file data
-// 	tearDownData()
-// })
+
 
 // describe("getAllPosts with one post", () => {
 // 	it("should get a post if one exists", () => {
