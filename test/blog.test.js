@@ -48,8 +48,41 @@ describe('Blog Tests', () => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
                     res.body.length.should.be.eql(1);
+                    res.body[0].title.should.be.eql("Test Title");
                 done();
                 });
         });
     });
-});
+
+    // GET route for /posts/:id
+        describe('/GET/ posts/:id single blog post', () => {
+        it('it should GET a blog post by the given id', (done) => {
+            const newPost = new blogModel({
+                title: "Vampires are real",
+                create_date: "01/01/2020",
+                modified_date: "02/01/2020",
+                username: "Buffy Summers",
+                content: "Vampires are not sparkly",
+                category: "life"
+            });
+            newPost.save((err, blogPost) => {
+                chai.request(app)
+                .get('/posts/' + blogPost.id)
+                .send(blogPost)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('title');
+                    res.body.should.have.property('username');
+                    res.body.should.have.property('content');
+                    res.body.should.have.property('category');
+                    res.body.should.have.property('_id').eql(blogPost.id);
+                    res.body.username.should.be.eql("Buffy Summers");
+                done();
+                });
+
+            });
+
+        })
+    })
+})
