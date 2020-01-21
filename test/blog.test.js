@@ -34,8 +34,10 @@ describe('Blog Tests', () => {
     after( (done) => {
         mongoose.connection
         blogModel.deleteMany({}, function(err) {
-        });
-            done();
+        }).then(() => {
+            mongoose.disconnect()
+        })
+        done();
     })
 
 
@@ -55,8 +57,8 @@ describe('Blog Tests', () => {
     });
 
     // GET route for /posts/:id
-        describe('/GET/ posts/:id single blog post', () => {
-        it('it should GET a blog post by the given id', (done) => {
+    describe('/GET/ posts/:id single blog post', () => {
+        it('should GET a blog post by the given id', (done) => {
             const newPost = new blogModel({
                 title: "Vampires are real",
                 create_date: "01/01/2020",
@@ -67,17 +69,17 @@ describe('Blog Tests', () => {
             });
             newPost.save((err, blogPost) => {
                 chai.request(app)
-                .get('/posts/' + blogPost.id)
-                .send(blogPost)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('title');
-                    res.body.should.have.property('username');
-                    res.body.should.have.property('content');
-                    res.body.should.have.property('category');
-                    res.body.should.have.property('_id').eql(blogPost.id);
-                    res.body.username.should.be.eql("Buffy Summers");
+                    .get('/posts/' + blogPost.id)
+                    .send(blogPost)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('title');
+                        res.body.should.have.property('username');
+                        res.body.should.have.property('content');
+                        res.body.should.have.property('category');
+                        res.body.should.have.property('_id').eql(blogPost.id);
+                        res.body.username.should.be.eql("Buffy Summers");
                 done();
                 });
 
