@@ -81,14 +81,14 @@ describe('User Tests', () => {
             mockUser.save((err, user) => {
                 // first let's check that we can GET it
                 chai.request(app)
-                    .get('/user/' + user.id)
+                    .get('/users' + user.id)
                     .send(user)
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.email.should.be.eq("test@email.com");
                     })
 
-                // let's attempt to update the entry
+                // let's update the entry with a new email
                 const updateUser = {
                     username: "Ford Prefect",
                     email: "newemail@gmail.com",
