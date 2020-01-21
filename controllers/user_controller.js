@@ -30,7 +30,7 @@ const updateUser = function (req, res) {
         }
         else {
             res.status(200);
-            res.send(user);
+            res.send({message: "You've updated your details!", user});
         }
     });
 };
