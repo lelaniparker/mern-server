@@ -41,8 +41,6 @@ const getWishlistItems = async function (req) {
 module.exports = {
 	getAllVitamins,
 	getVitaminById,
-	setDataFile,
-	getDataFileRelativeToApp,
 	updateUserWishlist,
 	getWishlistItems
 }
