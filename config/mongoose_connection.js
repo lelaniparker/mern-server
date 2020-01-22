@@ -6,7 +6,8 @@ const mongooseConnect = env => {
 		mongoose
 			.connect('mongodb://localhost/analyzevit_test', {
 				useNewUrlParser: true,
-				useUnifiedTopology: true
+				useUnifiedTopology: true,
+				useFindAndModify: false
 			})
 			.catch(error => console.log(error))
 	} else {

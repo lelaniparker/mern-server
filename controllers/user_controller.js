@@ -1,6 +1,8 @@
 const User = require("../models/user")
 
-// Gets User
+// Controller for getting user details
+
+// function returns a single user
 const getUser = function (req, res) {
     const userId = req.params.userId;
     User.findById(userId).exec(function (err, user) {
@@ -20,7 +22,7 @@ const getUser = function (req, res) {
     });
 };
 
-// Update User
+// function updates a user's details
 const updateUser = function (req, res) {
     const userId = req.params.id;
     User.findByIdAndUpdate(userId, req.body, { new: true }).exec(function (err, user) {

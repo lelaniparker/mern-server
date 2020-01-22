@@ -1,6 +1,9 @@
 const passport = require("passport");
 const User = require("../models/user");
 
+// Controller for routes to do with user authentication. Requires the User model, and uses the passport dependency
+
+// function to register a user.
 const register = function (req, res) {
   User.register(new User({
       username: req.body.username,
@@ -27,9 +30,9 @@ const register = function (req, res) {
   });
 };
 
+// function to log in user
 function loginUser(req, res) {
-    // passport.authenticate returns a function that we will call with req, res, and a callback function to execute on success
-
+    // authenticate is a helper function from passport that authenticates the user
     authenticate(req, res, function () {
         console.log('authenticated', req.user.username);
         console.log('session object:', req.session);
@@ -39,6 +42,7 @@ function loginUser(req, res) {
     });
 };
 
+// function to log out the user
 const logout = function (req, res) {
     req.logout();
     console.log("logged out user");

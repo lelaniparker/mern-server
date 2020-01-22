@@ -1,5 +1,8 @@
 const { getAllPosts, getPostById } = require("../utils/blog_utils")
 
+// Controller for blog posts
+
+// function gets all posts
 const getPosts = function(req, res) {
 	// execute the query from getAllPosts
     getAllPosts(req).exec((err, posts) => {
@@ -14,6 +17,7 @@ const getPosts = function(req, res) {
     });
 }
 
+// returns a single post
 const getPost = function(req, res) {
 	// execute the query from getPostById
 	getPostById(req).exec((err, post) => {

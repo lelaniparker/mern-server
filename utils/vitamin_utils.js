@@ -1,33 +1,16 @@
-// let dataFile = "../data/vitamin_data.json"
-// let vitaminData = require(dataFile)
-// let blogFile = "../data/blog_posts.json"
-// let blogPosts = require(blogFile)
 const Product = require("../models/product.js")
 const User = require("../models/user")
 
+// logic to return information from the database to do with products/vitamins
+
+// returns all products from database
 const getAllVitamins = function (req) {
 	return Product.find();
 }
 
+// returns a product via it's id
 const getVitaminById = function (req) {
 	return Product.findById(req.params.id)
-}
-
-// Allows flexibility for testing
-const setDataFile = function (fileName) {
-	dataFile = fileName
-	loadData()
-}
-
-// Loads data from dataFile
-function loadData() {
-	vitaminData = require(dataFile)
-}
-
-const getDataFileRelativeToApp = function (file) {
-	// Remove the ../ from the dataFile path for writing
-	// because the writeFile looks for path relative to the app, not utilities.js
-	return file.substring(file.lastIndexOf("../") + 3, file.length)
 }
 
 // Add product to wishlist
@@ -42,6 +25,7 @@ const updateUserWishlist = async function (req) {
 	});
 }
 
+// gets the products in a wishlist from the database
 const getWishlistItems = async function (req) {
 	const userId = req.params.userId;
 	let user = await User.findById(userId);
