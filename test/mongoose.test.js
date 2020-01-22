@@ -11,6 +11,7 @@ const { mongoose } = require('../config/mongoose_connection')
 
 const { expect } = chai
 
+// test to see if the correct database is used for testing and for development
 describe('Mongoose connection Tests',() => {
 	describe('test vs development database connection', () => {
 		it('checks mongoose has connected to the test database not development', (done) => {

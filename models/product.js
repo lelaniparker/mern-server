@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// schema for a Vitamin Product
 const Product = new Schema({
     productName: {
         type: String,

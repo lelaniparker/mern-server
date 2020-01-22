@@ -7,6 +7,8 @@ const {
     activeUserSession
 } = require("../controllers/auth_controller");
 
+// routes for the auth routes.
+// routes start with "/auth/"
 router.post("/register", register);
 router.post("/login", login);
 router.get('/logout', logout);

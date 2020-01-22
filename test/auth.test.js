@@ -70,20 +70,8 @@ describe('Auth Tests', () => {
                 })
             done();
         })
-    })
 
-    // logout a user
-    describe('/GET /auth/logout', () => {
-        it('should logout the user', (done) => {
-            chai.request(app)
-                .get("/auth/logout")
-                .end((err, res) => {
-                    res.should.have.status(200)
-                })
-            done();
-        })
-
-         it('should not log in with bad credentials', (done) => {
+        it('should not log in with bad credentials', (done) => {
             // bad credentials
             const badLogin = {
                 username: "Jayne_Cobb",
@@ -99,5 +87,19 @@ describe('Auth Tests', () => {
                 })
             done();
         })
+    })
+
+    // logout a user
+    describe('/GET /auth/logout', () => {
+        it('should logout the user', (done) => {
+            chai.request(app)
+                .get("/auth/logout")
+                .end((err, res) => {
+                    res.should.have.status(200)
+                })
+            done();
+        })
+
+
     })
 })

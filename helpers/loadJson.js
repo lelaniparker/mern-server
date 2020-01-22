@@ -3,6 +3,7 @@ const assert = require("assert");
 const Product = require("../models/product");
 const products = require("../data/vitaminProducts.json");
 
+// helper function used to seed the local database
 moongoose.connect('mongodb://localhost/analyzeVit');
 
 const db = mongoose.connection;

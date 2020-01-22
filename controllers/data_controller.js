@@ -1,5 +1,8 @@
 const { getAllVitamins, getVitaminById, updateUserWishlist, getWishlistItems } = require("../utils/vitamin_utils")
 
+// Controller for accessing the product data
+
+// function gets all the products
 const getVitamins = function (req, res) {
     // execute the query from getAllPosts
     getAllVitamins(req).exec((err, products) => {
@@ -14,6 +17,7 @@ const getVitamins = function (req, res) {
     });
 };
 
+// function to return a single product
 const getVitamin = function (req, res) {
     // execute the query from getVitaminById
     getVitaminById(req).exec((err, products) => {
@@ -34,8 +38,9 @@ const userAuthenticated = function (req, res, next) {
     }
 };
 
+// Adds item to wishlist
 const addWishlistItem = function (req, res) {
-    // saves wishlist item 
+    // saves wishlist item
     updateUserWishlist(req).then((user) => {
         res.status(200);
         res.send(user)
@@ -45,6 +50,7 @@ const addWishlistItem = function (req, res) {
     })
 };
 
+// gets all products in a user's wishlist
 const getProductsInWishlist = function (req, res) {
     //calls getWishlistItems
     getWishlistItems(req).then((product) => {
